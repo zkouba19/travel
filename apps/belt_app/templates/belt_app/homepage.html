@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Homepage</title>
+</head>
+<body>
+<div id="container">
+	{% for i in user %}
+	<h1>Hello {{ i.first_name }} {{ i.last_name }}</h1>
+	{% endfor %}
+	<button><a href="/logout">Log out</a></button>
+	<div id="myTrips">
+		<!-- place trips that i have planned or joined -->
+		<table>
+			<thead>
+				<tr>
+					<td>Destination:</td>
+					<td>Travel Start Date:</td>
+					<td>Travel End Date:</td>
+					<td>Plan:</td>
+				</tr>
+			</thead>
+			<tbody>
+			{% for trip in my_trips %}
+				<tr>
+					<td><a href="/viewtrip/{{ trip.id }}/">{{ trip.destination }}</a></td>
+					<td>{{ trip.start_date }}</td>
+					<td>{{ trip.end_date}}</td>
+					<td>{{ trip.plan }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div id="otherTrips">
+		<!-- trips user has not joined -->
+		<table>
+			<thead>
+				<tr>
+					<td>Name:</td>
+					<td>Destination:</td>
+					<td>Travel Start Date:</td>
+					<td>Travel End Date:</td>
+					<td>Do You Want To Join?</td>
+				</tr>
+			</thead>
+			<tbody>
+			{% for trip in new_trips %}
+				<tr>
+					<td>{% for user in trip.user.all %}{% if user.id == trip.creator %}{{ user.first_name }} {{ user.last_name }}{% endif %}{% endfor %}</td>
+					<td><a href="/viewtrip/{{ trip.id }}/">{{ trip.destination }}</a></td>
+					<td>{{ trip.start_date }}</td>
+					<td>{{ trip.end_date }}</td>
+					<td><a href="/join/{{ trip.id }}/">Join!</a></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div id="newDest">
+		<a href="/newtrip">Add New Trip!</a>
+	</div>
+
+	
+
+
+</div>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>New Trip Page</title>
+</head>
+<body>
+<h1>Create a new trip!</h1>
+<button><a href="/logout">Log Out</a></button>
+<button><a href="/homepage">Home Page</a></button>
+
+{% for message in messages %}
+
+		{{ message }}
+
+{% endfor %}
+
+<form action="add/" method="post">
+	{% csrf_token %}
+	Destination: <input type="text" name="destination">
+	Start Date: <input type="date" name="start_date">
+	End Date: <input type="date" name="end_date">
+	Description: <input type="text" name="plan">
+	<input type="submit" name="submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Index Page</title>
+</head>
+<body>
+<h1>Registration</h1>
+
+{% for message in messages %}
+
+		{{ message }}
+
+{% endfor %}
+
+<form action="register/" method="post">
+	{% csrf_token %}
+	First Name: <input type="text" name="first_name">
+	Last Name: <input type="text" name="last_name">
+	Email: <input type="text" name="email">
+	Password: <input type="text" name="password">
+	Confirm Password: <input type="text" name="confirm_password">
+	<input type="submit" name="submit">
+	<input type="hidden" name="hidden" value="registration">
+</form>
+<h1>Login</h1>
+<form action="login/" method="post">
+	{% csrf_token %}
+	Email: <input type="text" name="email">
+	Password: <input type="text" name="password">
+	<input type="submit" name="submit">
+</form>
+</body>
+</html>

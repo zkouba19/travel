@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trip Page</title>
+</head>
+<body>
+<div>
+	<button><a href="/logout">Log Out</a></button>
+	<button><a href="/homepage">Home Page</a></button>
+</div>
+<div>
+	
+	<h1>{{ trips.destination }}</h1>
+	<p>Planned By: {% for user in trips.user.all %}{% if trips.creator == user.id %}{{ user.first_name }} {{ user.last_name }}{% endif %}{% endfor %}</p>
+	<p>Description: {{ trips.plan }}</p>
+	<p>Start Date: {{ trips.start_date }}</p>
+	<p>End Date: {{ trips.end_date }}</p>
+</div>
+<div>
+	<p>Other users' joining this trip:</p>
+	{% for user in trips.user.all %}
+		<p>{{ user.first_name }} {{ user.last_name }}</p>
+	{% endfor %}
+</div>
+</body>
+</html>
